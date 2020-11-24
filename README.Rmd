@@ -26,8 +26,9 @@ The goal of RTSNEpred is to ...
 You can install the released version of RTSNEpred from github
 ``` r
 library(devtools)
-install_github("RTSNEpred")
-# install.packages("chenxuepu/RTSNEpred")
+install_github("chenxuepu/RTSNEpred")
+# install.packages("RTSNEpred")
+
 ```
 
 ## Example

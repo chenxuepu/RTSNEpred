@@ -18,7 +18,7 @@ You can install the released version of RTSNEpred from github
 ``` r
 library(devtools)
 install_github("chenxuepu/RTSNEpred")
-# install.packages("RTSNEpred")
+## install.packages("RTSNEpred")
 ```
 
 ## Example

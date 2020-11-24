@@ -1,3 +1,17 @@
+
+#' Pipe operator
+#'
+#' See \code{\link[magrittr]{%>%}} for more details.
+#'
+#' @name %>%
+#' @rdname pipe
+#' @keywords internal
+#' @export
+#' @importFrom magrittr %>%
+#' @usage lhs \%>\% rhs
+NULL
+
+
 #' train tsne but use MDS to Y_init,and keep pca information in order to predict.
 #'
 #'
