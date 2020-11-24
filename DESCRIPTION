@@ -6,7 +6,7 @@ Authors@R:
            family = "chen",
            role = c("aut", "cre"),
            email = "610811101@gms.ndhu.edu.tw")
-Description: use MDS to setup Y_init for T-SNE , then we can predict the T-SNE
+Description: use MDS to setup Y_init for T-SNE, then we can predict the T-SNE.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -15,6 +15,7 @@ RoxygenNote: 7.1.1
 Imports: 
     stats,
     Rtsne,
-    magrittr
+    magrittr,
+    ggplot2
 URL: https://github.com/chenxuepu/RTSNEpred
 BugReports: https://github.com/chenxuepu/RTSNEpred/issues

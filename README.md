@@ -17,7 +17,7 @@ You can install the released version of RTSNEpred from github
 
 ``` r
 library(devtools)
-install_github("RTSNEpred")
+install_github("chenxuepu/RTSNEpred")
 # install.packages("RTSNEpred")
 ```
 
@@ -29,14 +29,13 @@ This is a basic example which shows you how to solve a common problem:
 library(RTSNEpred)
 library(ggplot2)
 library(magrittr)
-#> Warning: package 'magrittr' was built under R version 4.0.3
 set.seed(123)
 iris_index <- sample(1:nrow(iris),size = floor(0.8*nrow(iris)))
 iris_train <- iris[iris_index,]
 iris_test <- iris[-iris_index,]
 set.seed(123)
 iris_tsne <- train_tsne(iris_train[,1:4])
-iris_pred <- predict_tsne(TSNE = iris_tsne,test = iris_test[,1:4],k = 3) %>%
+iris_pred <- predict_tsne(TSNE = iris_tsne,data = iris_test[,1:4],k = 3) %>%
   as.data.frame() %>%
   cbind(iris_test$Species) %>%
   `names<-`(c("x","y","Species"))
