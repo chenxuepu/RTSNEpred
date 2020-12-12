@@ -49,7 +49,7 @@ NULL
 #' iris_test <- iris[-iris_index,]
 #' set.seed(123)
 #' iris_tsne <- train_tsne(iris_train[,1:4])
-#' iris_pred <- predict_tsne(TSNE = iris_tsne,data = iris_test[,1:4],k = 3) %>%
+#' iris_pred <- predict(object = iris_tsne,data = iris_test[,1:4],k = 3) %>%
 #'   as.data.frame() %>%
 #'   cbind(iris_test$Species) %>%
 #'   `names<-`(c("x","y","Species"))
@@ -81,6 +81,33 @@ train_tsne <- function(data,...){
   tsne[["Y_init"]] <- Y_init
   tsne[["pca_coef"]] <- as.matrix(pca$rotation[,1:2])
   tsne[["center"]] <- pca$center
-  class(tsne) <- "TSNE"
+  class(tsne) <- "tsne"
   tsne
 }
+
+
+#' @export
+predict.tsne <- function(object, data, k = 5,...){
+  ## the function is use by myself , so it has not check anything
+  if(class(object)!="tsne"){
+    stop("class is not TSNE")
+  }
+  data_mean <- matrix(object$center,nrow = nrow(data),ncol = ncol(data),byrow = T)
+
+  RS <- object$Y-object$Y_init
+
+  data_pca_value <- as.matrix(data-data_mean) %*% object$pca_coef
+
+  data_predict <- matrix(nrow = nrow(data),ncol = 2) %>%
+    as.data.frame() %>%
+    `names<-`(c("x","y"))
+
+  for(i in 1:nrow(data)){
+    data_dist_order <- (object$Y_init-matrix(data_pca_value[i,],ncol = 2,nrow = nrow(object$Y_init),byrow = T))^2 %>% rowSums() %>% order()
+    index <- data_dist_order[1:k]
+    move <- RS[index,] %>% colMeans()
+    data_predict[i,] <- data_pca_value[i,]+move
+  }
+  data_predict
+}
+
