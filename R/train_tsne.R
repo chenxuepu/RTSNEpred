@@ -86,7 +86,22 @@ train_tsne <- function(data,...){
 }
 
 
+
+
+#' predict T-SNE
+#'
+#' use MDS to setup Y_init , then we can predict the T-SNE
+#'
+#' @param object a list from \link{train_tsne}
+#' @param data a data want to pred
+#' @param k how many neighbor to use
+#'@param ... Other
+#'
+#' @return
+#' a dataframe for 2 dim
+#'
 #' @export
+#'
 predict.tsne <- function(object, data, k = 5,...){
   ## the function is use by myself , so it has not check anything
   if(class(object)!="tsne"){
